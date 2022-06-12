@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import axios from "axios";
+import InfoBox from "./Components/InfoBox";
 function App() {
   //GETTING COUNTRIES FROM THE API
   useEffect(() => {
@@ -55,9 +56,20 @@ function App() {
       </div>
       {/* HEADER */}
       {/* TITLE + SELECT DROPDOWN */}
-      {/* INFOBOX1 */}
-      {/* INFOBOX2 */}
-      {/* INFOBOX3 */}
+
+      <div className="app__stats">
+        <InfoBox
+          title="Coronavirus Cases"
+          cases={12345}
+          total={100000}
+        ></InfoBox>
+        <InfoBox title="Recovered Cases" cases={1234} total={10000}></InfoBox>
+        <InfoBox title="Deaths" cases={123} total={100}></InfoBox>
+        {/* INFOBOX1 title="coronavirus_cases" */}
+        {/* INFOBOX2 title="recovered_cases" */}
+        {/* INFOBOX3 title="deaths" */}
+      </div>
+
       {/* TABLE */}
       {/* GRAPH */}
       {/* MAP */}
