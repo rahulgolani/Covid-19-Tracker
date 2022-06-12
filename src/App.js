@@ -1,9 +1,66 @@
 import "./App.css";
-
+import React, { useState, useEffect } from "react";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import axios from "axios";
 function App() {
+  //GETTING COUNTRIES FROM THE API
+  useEffect(() => {
+    axios
+      .get("https://disease.sh/v3/covid-19/countries")
+      .then((response) => {
+        const countriesArr = response.data.map((countryData) => ({
+          name: countryData.country,
+          value: countryData.countryInfo.iso3 || countryData.country,
+        }));
+        // console.log(countriesArr);
+        setCountries(countriesArr);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // array for the countries
+  const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState("worldwide");
+
+  const onCountryChange = (event) => {
+    setCountry(event.target.value);
+  };
+
   return (
     <div className="App">
-      <h1>COVID 19 TRACKER</h1>
+      <div className="app__header">
+        <h1>COVID 19 TRACKER</h1>
+        {/* BEM Naming Convention */}
+        <FormControl className="app__dropdown">
+          <Select
+            variant="outlined"
+            value={country}
+            onChange={onCountryChange}
+            color="primary"
+            size="small"
+          >
+            <MenuItem key="worldwide" value="worldwide">
+              WorldWide
+            </MenuItem>
+            {/* Loop through all the countries */}
+            {countries.map((country) => (
+              <MenuItem key={country.value} value={country.value}>
+                {country.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+      {/* HEADER */}
+      {/* TITLE + SELECT DROPDOWN */}
+      {/* INFOBOX1 */}
+      {/* INFOBOX2 */}
+      {/* INFOBOX3 */}
+      {/* TABLE */}
+      {/* GRAPH */}
+      {/* MAP */}
     </div>
   );
 }

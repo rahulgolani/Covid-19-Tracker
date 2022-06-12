@@ -1,4 +1,16 @@
-.App {
+* {
+  margin: 0;
+}
+
+.app__header {
+  /* width: 900px; */
+  display: flex;
+  border: 2px solid red;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +47,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
