@@ -17,8 +17,32 @@ body {
 
 .app__stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
+
+.app {
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.app__left {
+  border: 2px solid green;
+  /* width: 800px; */
+  flex: 0.9;
+}
+
+.app__right {
+  border: 2px solid red;
+}
+
+@media (max-width: 970px) {
+  .app {
+    flex-direction: column;
+  }
+}
+
 /* .App {
   text-align: center;
 }
