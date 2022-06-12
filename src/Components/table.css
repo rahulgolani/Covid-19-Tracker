@@ -1,0 +1,11 @@
+.table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow: scroll;
+  height: 50vh;
+  /* color: #6a5d5d; */
+}
+
+.table .tablerow:nth-of-type(odd) {
+  background-color: #f3f2f8;
+}

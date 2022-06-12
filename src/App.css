@@ -33,13 +33,25 @@ body {
   flex: 0.9;
 }
 
-.app__right {
+.app_right {
   border: 2px solid red;
+}
+
+.app_right__countryHeading {
+  text-align: center;
+}
+
+.app_right__chartHeading {
+  text-align: center;
 }
 
 @media (max-width: 970px) {
   .app {
     flex-direction: column;
+  }
+
+  .app_right {
+    margin-top: 20px;
   }
 }
 

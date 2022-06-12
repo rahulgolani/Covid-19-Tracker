@@ -10,7 +10,14 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import InfoBox from "./Components/InfoBox";
+import TableComponent from "./Components/TableComponent";
 function App() {
+  // array for the countries
+  const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState("worldwide");
+  const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
+
   //GETTING COUNTRIES FROM THE API
   useEffect(() => {
     axios
@@ -22,6 +29,7 @@ function App() {
         }));
         // console.log(countriesArr);
         setCountries(countriesArr);
+        setTableData(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -39,11 +47,6 @@ function App() {
         console.log(error);
       });
   }, []);
-
-  // array for the countries
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("worldwide");
-  const [countryInfo, setCountryInfo] = useState({});
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
@@ -77,7 +80,7 @@ function App() {
               size="small"
             >
               <MenuItem key="worldwide" value="worldwide">
-                WorldWide
+                Worldwide
               </MenuItem>
               {/* Loop through all the countries */}
               {countries.map((country) => (
@@ -96,16 +99,19 @@ function App() {
             title="Coronavirus Cases"
             cases={countryInfo.todayCases}
             total={countryInfo.cases}
+            color="primary"
           ></InfoBox>
           <InfoBox
             title="Recovered Cases"
             cases={countryInfo.todayRecovered}
             total={countryInfo.recovered}
+            color="secondary"
           ></InfoBox>
           <InfoBox
-            title="Deaths"
+            title="Total Deaths"
             cases={countryInfo.todayDeaths}
             total={countryInfo.deaths}
+            color="error"
           ></InfoBox>
           {/* INFOBOX1 title="coronavirus_cases" */}
           {/* INFOBOX2 title="recovered_cases" */}
@@ -117,9 +123,14 @@ function App() {
       <Card className="app_right">
         <CardContent>
           {/* TABLE */}
-          <Typography variant="h5">Live Cases By Country</Typography>
+          <Typography variant="h5" className="app_right__countryHeading">
+            Live Cases By Country
+          </Typography>
+          <TableComponent countries={tableData}></TableComponent>
           {/* GRAPH */}
-          <Typography variant="h5">Worldwide New Cases</Typography>
+          <Typography variant="h5" className="app_right__chartHeading">
+            Worldwide New Cases
+          </Typography>
         </CardContent>
       </Card>
     </div>
