@@ -11,6 +11,8 @@ import {
 import axios from "axios";
 import InfoBox from "./Components/InfoBox";
 import TableComponent from "./Components/TableComponent";
+import { sortData } from "./Components/utils";
+import LineGraph from "./Components/LineGraph";
 function App() {
   // array for the countries
   const [countries, setCountries] = useState([]);
@@ -25,11 +27,12 @@ function App() {
       .then((response) => {
         const countriesArr = response.data.map((countryData) => ({
           name: countryData.country,
-          value: countryData.countryInfo.iso3 || countryData.country,
+          value: countryData.countryInfo.iso2 || countryData.country,
         }));
         // console.log(countriesArr);
         setCountries(countriesArr);
-        setTableData(response.data);
+        const sortedData = sortData(response.data);
+        setTableData(sortedData);
       })
       .catch((error) => {
         console.log(error);
@@ -121,7 +124,7 @@ function App() {
         </div>
       </div>
       <Card className="app_right">
-        <CardContent>
+        <CardContent className="app_right__cardcontent">
           {/* TABLE */}
           <Typography variant="h5" className="app_right__countryHeading">
             Live Cases By Country
@@ -131,6 +134,7 @@ function App() {
           <Typography variant="h5" className="app_right__chartHeading">
             Worldwide New Cases
           </Typography>
+          <LineGraph></LineGraph>
         </CardContent>
       </Card>
     </div>

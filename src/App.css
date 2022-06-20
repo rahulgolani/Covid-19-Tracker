@@ -23,19 +23,19 @@ body {
 .app {
   display: flex;
   justify-content: space-evenly;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   padding: 20px;
 }
 
 .app__left {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   /* width: 800px; */
   flex: 0.9;
 }
 
-.app_right {
-  border: 2px solid red;
-}
+/* .app_right { */
+/* border: 2px solid red; */
+/* } */
 
 .app_right__countryHeading {
   text-align: center;
