@@ -13,12 +13,18 @@ import InfoBox from "./Components/InfoBox";
 import TableComponent from "./Components/TableComponent";
 import { sortData } from "./Components/utils";
 import LineGraph from "./Components/LineGraph";
+import Map from "./Components/Map";
+import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.js";
+
 function App() {
   // array for the countries
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [center, setCenter] = useState([18.5204, 73.8567]);
+  const [mapZoom, setMapZoom] = useState(3);
 
   //GETTING COUNTRIES FROM THE API
   useEffect(() => {
@@ -65,6 +71,10 @@ function App() {
         setCountry(countryCode);
         // console.log(data);
         setCountryInfo(data);
+        // console.log(data.countryInfo.lat);
+        // console.log(data.countryInfo.long);
+        setCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
   };
 
@@ -122,6 +132,7 @@ function App() {
 
           {/* MAP */}
         </div>
+        <Map center={center} zoom={mapZoom}></Map>
       </div>
       <Card className="app_right">
         <CardContent className="app_right__cardcontent">
