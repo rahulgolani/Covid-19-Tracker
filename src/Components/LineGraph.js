@@ -4,6 +4,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "./chart.css";
 import { display } from "@mui/system";
+import { blue } from "@mui/material/colors";
 
 function LineGraph({ casesType = "cases" }) {
   // https://disease.sh/v3/covid-19/historical/all?lastdays=30
@@ -58,6 +59,8 @@ function LineGraph({ casesType = "cases" }) {
               backgroundColor: "rgba(204, 16, 52, 0.5)",
               borderColor: "#CC1034",
               data: chartData,
+              pointRadius: 1,
+              pointHoverBorderColor: "blue",
             },
           ],
         }}
