@@ -158,7 +158,7 @@ function App() {
           <Typography variant="h5" className="app_right__chartHeading">
             Worldwide New Cases
           </Typography>
-          <LineGraph></LineGraph>
+          <LineGraph casesType={casesType}></LineGraph>
         </CardContent>
       </Card>
     </div>

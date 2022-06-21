@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "./chart.css";
-import { display } from "@mui/system";
-import { blue } from "@mui/material/colors";
+// import { display } from "@mui/system";
+// import { blue } from "@mui/material/colors";
 
 function LineGraph({ casesType = "cases" }) {
   // https://disease.sh/v3/covid-19/historical/all?lastdays=30
@@ -39,7 +39,7 @@ function LineGraph({ casesType = "cases" }) {
       .then((response) => {
         //console.log(response);
         // const chartDataTemp = buildChartData(response.data, "cases");
-        buildChartData(response.data, "cases");
+        buildChartData(response.data, casesType);
         // setChartData(chartDataTemp);
         // console.log(chartData);
       })

@@ -30,7 +30,6 @@ const casesTypeColors = {
 };
 
 function Map({ countries, center, zoom, casesType = "cases" }) {
-  console.log(casesTypeColors[casesType].hex);
   return (
     <div className="map">
       <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>
@@ -41,13 +40,21 @@ function Map({ countries, center, zoom, casesType = "cases" }) {
         ></TileLayer>
         {/* {showDataOnMap(countries, casesType)} */}
         {countries.map((country) => {
+          let color = casesTypeColors[casesType].rgb;
           return (
             <Circle
               key={country.country}
               center={[country.countryInfo.lat, country.countryInfo.long]}
-              fillColor={casesTypeColors[casesType]["color"]}
-              color={casesTypeColors[casesType]["color"]}
-              opacity={0.4}
+              // fillColor={casesTypeColors[casesType]["hex"]}
+              pathOptions={{ color }}
+              // color={
+              //   casesType == "cases"
+              //     ? "red"
+              //     : casesType == "recovered"
+              //     ? "green"
+              //     : "blue"
+              // }
+              fillOpacity={0.4}
               radius={
                 Math.sqrt(country[casesType]) *
                 casesTypeColors[casesType].multiplier
