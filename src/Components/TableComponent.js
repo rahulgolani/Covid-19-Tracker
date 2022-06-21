@@ -8,6 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./table.css";
 import { Typography } from "@mui/material";
+import { formatNumbersV2 } from "./utils";
+
 function TableComponent({ countries }) {
   return (
     <div className="table">
@@ -37,7 +39,7 @@ function TableComponent({ countries }) {
                 <TableCell component="th" scope="row">
                   {country}
                 </TableCell>
-                <TableCell align="right">{cases}</TableCell>
+                <TableCell align="right">{formatNumbersV2(cases)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

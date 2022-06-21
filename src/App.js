@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import InfoBox from "./Components/InfoBox";
 import TableComponent from "./Components/TableComponent";
-import { sortData } from "./Components/utils";
+import { sortData, formatNumbers, formatNumbersV2 } from "./Components/utils";
 import LineGraph from "./Components/LineGraph";
 import Map from "./Components/Map";
 import "leaflet/dist/leaflet.css";
@@ -25,6 +25,8 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [center, setCenter] = useState([18.5204, 73.8567]);
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   //GETTING COUNTRIES FROM THE API
   useEffect(() => {
@@ -36,6 +38,9 @@ function App() {
           value: countryData.countryInfo.iso2 || countryData.country,
         }));
         // console.log(countriesArr);
+        // setting the countries data to be displayed on map
+        setMapCountries(response.data);
+
         setCountries(countriesArr);
         const sortedData = sortData(response.data);
         setTableData(sortedData);
@@ -109,21 +114,24 @@ function App() {
 
         <div className="app__stats">
           <InfoBox
+            onClick={() => setCasesType("cases")}
             title="Coronavirus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={formatNumbers(countryInfo.todayCases)}
+            total={formatNumbersV2(countryInfo.cases)}
             color="primary"
           ></InfoBox>
           <InfoBox
+            onClick={() => setCasesType("recovered")}
             title="Recovered Cases"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={formatNumbers(countryInfo.todayRecovered)}
+            total={formatNumbersV2(countryInfo.recovered)}
             color="secondary"
           ></InfoBox>
           <InfoBox
+            onClick={() => setCasesType("deaths")}
             title="Total Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={formatNumbers(countryInfo.todayDeaths)}
+            total={formatNumbersV2(countryInfo.deaths)}
             color="error"
           ></InfoBox>
           {/* INFOBOX1 title="coronavirus_cases" */}
@@ -132,7 +140,12 @@ function App() {
 
           {/* MAP */}
         </div>
-        <Map center={center} zoom={mapZoom}></Map>
+        <Map
+          casesType={casesType}
+          countries={mapCountries}
+          center={center}
+          zoom={mapZoom}
+        ></Map>
       </div>
       <Card className="app_right">
         <CardContent className="app_right__cardcontent">

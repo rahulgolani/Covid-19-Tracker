@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
-
-function InfoBox({ title, cases, total, color }) {
+import "./infobox.css";
+function InfoBox({ title, cases, total, color, ...props }) {
   return (
-    <div>
-      <Card className="infobox">
+    <div className="infobox__container">
+      <Card className="infobox" onClick={props.onClick}>
         <CardContent>
           <Typography className="infobox__title" variant="h5" color={color}>
             {title}

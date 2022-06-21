@@ -1,0 +1,21 @@
+.infobox {
+  flex: 1;
+}
+
+.infobox:not(:last-child) {
+  margin-right: 5px !important;
+}
+
+.infobox__cases {
+  color: #cc1034 !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.infobox__total {
+  color: #6c757d !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+}
