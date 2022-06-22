@@ -24,10 +24,13 @@ const casesTypeColors = {
 };
 
 export const formatNumbers = (stat) =>
-  stat ? `+${numeral(stat).format("0.0a")}` : +0;
+  stat ? `+${numeral(stat).format("0.0a")}` : "N/A";
 
 export const formatNumbersV2 = (stat) =>
-  stat ? `${numeral(stat).format("0.0a")}` : 0;
+  stat ? `${numeral(stat).format("0.0a")}` : "N/A";
+
+export const capitalizeString = (strValue) =>
+  strValue.charAt(0).toUpperCase() + strValue.slice(1);
 
 export const sortData = (data) => {
   const sortedData = [...data];

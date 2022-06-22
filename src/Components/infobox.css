@@ -1,5 +1,14 @@
 .infobox {
   flex: 1;
+  cursor: pointer;
+}
+
+.infobox--selected {
+  border-top: 10px solid greenyellow;
+}
+
+.infobox--selected--red {
+  border-color: red;
 }
 
 .infobox:not(:last-child) {
@@ -12,6 +21,10 @@
   font-size: 1.5rem !important;
   margin-top: 5px !important;
   margin-bottom: 5px !important;
+}
+
+.infobox--cases--green {
+  color: #90ee90 !important;
 }
 
 .infobox__total {

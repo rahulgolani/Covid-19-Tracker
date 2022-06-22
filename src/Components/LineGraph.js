@@ -15,6 +15,7 @@ function LineGraph({ casesType = "cases" }) {
     const chartDataTemp = [];
     const chartLabelTemp = [];
     let lastDataPoint;
+    // console.log(data[casesType]);
     for (let date in data[casesType]) {
       // const newDataPoint = {
       //   x: date,

@@ -11,7 +11,12 @@ import {
 import axios from "axios";
 import InfoBox from "./Components/InfoBox";
 import TableComponent from "./Components/TableComponent";
-import { sortData, formatNumbers, formatNumbersV2 } from "./Components/utils";
+import {
+  sortData,
+  formatNumbers,
+  formatNumbersV2,
+  capitalizeString,
+} from "./Components/utils";
 import LineGraph from "./Components/LineGraph";
 import Map from "./Components/Map";
 import "leaflet/dist/leaflet.css";
@@ -78,7 +83,11 @@ function App() {
         setCountryInfo(data);
         // console.log(data.countryInfo.lat);
         // console.log(data.countryInfo.long);
-        setCenter([data.countryInfo.lat, data.countryInfo.long]);
+        if (countryCode === "worldwide") {
+          setCenter([18.5204, 73.8567]);
+        } else {
+          setCenter([data.countryInfo.lat, data.countryInfo.long]);
+        }
         setMapZoom(4);
       });
   };
@@ -114,6 +123,8 @@ function App() {
 
         <div className="app__stats">
           <InfoBox
+            isRed={true}
+            isActive={casesType === "cases"}
             onClick={() => setCasesType("cases")}
             title="Coronavirus Cases"
             cases={formatNumbers(countryInfo.todayCases)}
@@ -121,6 +132,8 @@ function App() {
             color="primary"
           ></InfoBox>
           <InfoBox
+            isRed={false}
+            isActive={casesType === "recovered"}
             onClick={() => setCasesType("recovered")}
             title="Recovered Cases"
             cases={formatNumbers(countryInfo.todayRecovered)}
@@ -128,6 +141,8 @@ function App() {
             color="secondary"
           ></InfoBox>
           <InfoBox
+            isRed={true}
+            isActive={casesType === "deaths"}
             onClick={() => setCasesType("deaths")}
             title="Total Deaths"
             cases={formatNumbers(countryInfo.todayDeaths)}
@@ -156,7 +171,7 @@ function App() {
           <TableComponent countries={tableData}></TableComponent>
           {/* GRAPH */}
           <Typography variant="h5" className="app_right__chartHeading">
-            Worldwide New Cases
+            Worldwide New {capitalizeString(casesType)}
           </Typography>
           <LineGraph casesType={casesType}></LineGraph>
         </CardContent>

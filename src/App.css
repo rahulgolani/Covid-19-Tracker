@@ -27,6 +27,15 @@ body {
   padding: 20px;
 }
 
+.app__header > h1 {
+  color: #fc3c3c;
+  size: 2rem;
+}
+
+.app__dropdown {
+  background-color: white;
+}
+
 .app__left {
   /* border: 2px solid green; */
   /* width: 800px; */
